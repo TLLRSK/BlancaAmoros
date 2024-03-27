@@ -448,6 +448,10 @@ section, article {
     gap: 20rem;
   }
   &__list-item {
+    .lazy-load-image-background {
+      width: 100%;
+      min-height: 12rem;
+    }
     &-fig-caption {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -460,10 +464,6 @@ section, article {
     }
     &-size {
       text-align: right;
-    }
-    .lazy-load-image-background {
-      width: 100%;
-      min-height: 12rem;
     }
   }
   &__description {
@@ -649,9 +649,6 @@ section, article {
 .impressum {
   display: flex;
   justify-content: flex-end;
-  p {
-    text-transform: uppercase;
-  }
 }
 /* FOOTER */
 .footer {
@@ -962,6 +959,7 @@ img {
   
   [class^="link"] {
     cursor: pointer;
+    display: block;
     text-decoration: none;
     text-transform: uppercase;
     color: var(--black);

@@ -1,59 +1,165 @@
-import { useEffect, useState } from "react";
+import getImage from "../../js/utils";
+const About = (props) => {
+    const {pageData, mediaData, contentRef, isLoading} = props;
 
-export default function About() {
-    const [pageContent, setPageContent] = useState(null);
-    const [mediaData, setMediaData] = useState(null);
-    // Get image data
-    const getImage = (id) => {
-        const imgData = mediaData.find((img) => img.id === id);
-        return imgData;
-    }
-
-    const fetchPageContent = async () => {
-        try {
-        const response = await fetch('http://localhost/blanca/wp-json/wp/v2/pages?slug=about');
-        const data = await response.json();
-        console.log("Response: ", response)
-        console.log("Data: ", data)
-        if (data.length > 0) {
-            setPageContent(data[0]);  
-        }
-        } catch (error) {
-        console.error('Error fetching page content:', error);
-        }
-    };
-
-    const fetchMedia = async () => {
-        try {
-        const response = await fetch('http://localhost/blanca/wp-json/wp/v2/media');
-        const data = await response.json();
-        console.log("Media Data: ", data)
-        return data.length > 0 ? setMediaData(data) : null;
-        } catch (error) {
-        console.error('Error fetching media:', error);
-        }
-    }
-
-    useEffect(() => {
-        fetchMedia();
-        fetchPageContent();
-    }, []);
     return <>
-        {pageContent && mediaData && (
-            <>
-            {pageContent.acf && (
-                <>
-                <header> 
+        {
+            pageData && mediaData && (
+                <section className={`about ${isLoading ? "" : "ldd"}`} ref={contentRef}>
+                    <header className="header--section about__header"> 
+                        <div className="about__bio-grid">
+                            <p className="about__bio-grid-item--name">{pageData.acf.bio.name}</p>
+                            <p className="about__bio-grid-item--year">{pageData.acf.bio.year}</p>
+
+                            <div className="about__bio-grid-item--location">
+                                <p>{pageData.acf.bio.location.city},</p>
+                                <p>{pageData.acf.bio.location.country}</p>
+                            </div>
+                        </div>
+                    </header>
                     
-                </header>
-                
-                <main>
-                    
-                </main>
-                
-                </>
-            )}
-            </>
-        )}
+                    <main className="about__main">
+                        <img 
+                            src={getImage(pageData.acf.bio.portrait, mediaData)?.source_url}
+                            srcSet={`
+                                  ${getImage(pageData.acf.bio.portrait, mediaData)?.media_details.sizes.thumbnail.source_url} 360w,
+                                  ${getImage(pageData.acf.bio.portrait, mediaData)?.media_details.sizes.medium.source_url} 720w,
+                                  ${getImage(pageData.acf.bio.portrait, mediaData)?.source_url} 1200w
+                                `}
+                            alt={getImage(pageData.acf.bio.portrait)?.text_alt}
+                            className="img--about"
+                        />
+                        <div className="about__list-container">
+                            <h3 className="about__list-title">{pageData.acf.about_lists[0].education_list.list_title}</h3>
+
+                            <ul className="about__list">
+                                {pageData.acf.about_lists[0].education_list.education_list_item.map((el,i) => (
+                                    <li key={i} className="about__list-item">
+                                        <div className="about__list-item-date">
+                                            <p>{el.education_list_item.year}</p>
+                                        </div>
+                                        <div className="about__list-item-description">
+                                            <p>{el.education_list_item.description}</p>
+                                        </div>
+                                        <div className="about__list-item-location ta--right">
+                                            <p>{el.education_list_item.location.city}/</p>
+                                            <p>{el.education_list_item.location.country}</p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+
+                        <div className="about__list-container--show">
+                            <h3 className="about__list-title">{pageData.acf.about_lists[0].shows_list.list_title}</h3>
+                           
+                            <div className="about__sublist-container">
+                                <h4 className="about__sublist-title">{pageData.acf.about_lists[0].shows_list.shows_list_solo.list_title}</h4>
+                                
+                                <ul className="about__list">
+                                    {pageData.acf.about_lists[0].shows_list.shows_list_solo.shows_list_item.map((el, i) => {
+                                        console.log(el)
+                                        return <>
+                                        <li key={i} className="about__list-item--show">
+
+                                            <div className="about__list-item-date--show">
+                                                <p>{el.shows_list_item.date.month}</p>
+                                                <p>{el.shows_list_item.date.year}</p>
+                                            </div>
+                                            
+                                            <div className="about__list-item-description--show">
+                                                <p>{el.shows_list_item.show_details.show_title}</p>
+                                                <p>/{el.shows_list_item.show_details.location.show_room}</p>
+                                            </div>
+
+                                            <div className="about__list-item-location"> 
+                                                
+                                                <p>{el.shows_list_item.show_details.location.city_and_country}</p>
+                                            </div>
+                                        </li>
+                                        </>
+                                    })}
+                                </ul>
+                            </div>
+                            
+                            <div className="about__sublist-container">
+                                <h4 className="about__sublist-title">{pageData.acf.about_lists[0].shows_list.shows_list_group.list_title}</h4>
+                                
+                                <ul className="about__list">
+                                    {pageData.acf.about_lists[0].shows_list.shows_list_group.shows_list_item.map((el, i) => {
+                                        console.log(el)
+                                        return <>
+                                        <li key={i} className="about__list-item--show">
+
+                                            <div className="about__list-item-date--show">
+                                                <p>{el.shows_list_item.date.month}</p>
+                                                <p>{el.shows_list_item.date.year}</p>
+                                            </div>
+                                            
+                                            <div className="about__list-item-description--show">
+                                                <p>{el.shows_list_item.show_details.show_title}</p>
+                                                <p>/{el.shows_list_item.show_details.location.show_room}</p>
+                                            </div>
+
+                                            <div className="about__list-item-location"> 
+                                                
+                                                <p>{el.shows_list_item.show_details.location.city_and_country}</p>
+                                            </div>
+                                        </li>
+                                        </>
+                                    })}
+                                </ul>
+                            </div>
+                            
+                            {/* <ul className="about__list">
+                                {pageData.acf.about_lists[0].shows_list.shows_list_item.map((el,i) => (
+                                    <li key={i} className="about__list-item--show">
+
+                                        <div className="about__list-item-date--show">
+                                            <p>{el.shows_list_item.date.month}</p>
+                                            <p>{el.shows_list_item.date.year}</p>
+                                        </div>
+
+                                        <div className="about__list-item-description--show">
+                                            <p className="about__show-title">{el.shows_list_item.show_details.show_title}</p>
+                                            <p>{el.shows_list_item.show_details.location.show_room}</p>
+                                        </div>
+
+                                        <div className="about__list-item-location--show"> 
+                                                <p>{el.shows_list_item.show_details.location.city_and_country}</p>
+                                            </div>
+
+                                            <p className="about__list-item-show-type ta--right">{el.shows_list_item.type}</p>
+                                    </li>
+                                ))}
+                            </ul> */}
+                        </div>
+
+                        <div className="about__list-container"> 
+                            <h3 className="about__list-title">{pageData.acf.about_lists[0].others_list.list_title}</h3>
+                            
+                            <ul className="about__list">
+                                {pageData.acf.about_lists[0].others_list.others_list_item.map((el,i) => (
+                                    <li key={i} className="about__list-item">
+                                        <div className="about__list-item-date">
+                                            <p>{el.others_list_item.year}</p>
+                                        </div>
+                                        <div className="about__list-item-description">
+                                            <p>{el.others_list_item.description}</p>
+                                        </div>
+                                        <div className="about__list-item-location ta--right">
+                                            <p>{el.others_list_item.location.city}/</p>
+                                            <p>{el.others_list_item.location.country}</p>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </main>
+                </section>
+            )
+        }
     </>
-}
+  };
+  
+  export default About;

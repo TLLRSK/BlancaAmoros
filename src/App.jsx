@@ -1,28 +1,103 @@
-import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import {Nav} from './components.js';
-import {Home, About} from './views.js';
+import {Nav, Footer, LoadingScreen, Home, About, Contact, SingleWork, useFetchData, usePageTransition, Impressum } from '../src/js/index';
+import './scss/style.scss';
 
 function App() {
-  const [dateState, setDateState] = useState(new Date());
+  const {siteData, postsData, mediaData} = useFetchData();
+  const { location, isLoading, contentRef, changeRoute, firstLoad, setFirstLoad } = usePageTransition();
 
-  // Date and Time strings
-  const dateString = `${dateState.getDate() < 10 ? '0' : ''}${dateState.getDate()}.${dateState.getMonth() < 10 ? '0' : ''}${dateState.getMonth()+1}.${dateState.getFullYear()}`
-  const timeString = `${dateState.getHours()}:${dateState.getMinutes()}`
-
-  useEffect(() => {
-    setInterval(() => setDateState(new Date()), 60000);
-  }, [])
-  
   return (
     <>
-    <Nav/>
+    <Nav
+      location={location}
+      postsData={postsData}
+      changeRoute={changeRoute}
+      firstLoad={firstLoad}
+    />
+    {
+      firstLoad && (
+        <LoadingScreen
+        postsData={postsData}
+        siteData={siteData}
+        mediaData={mediaData}
+        isLoading={isLoading}
+        setFirstLoad={setFirstLoad}/>
+      )
+    }
+    
     <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='/about' element={<About/>}/>
+      <Route path="/" element={
+        siteData && siteData.home && (
+          <Home 
+            pageData={siteData.home}
+            mediaData={mediaData} 
+            contentRef={contentRef} 
+            postsData={postsData}
+            changeRoute={changeRoute}
+            isLoading={isLoading}
+          />
+        )
+      }
+      />
+
+      <Route path="/about" element={
+        siteData && siteData.about && (
+          <About
+            pageData={siteData.about}
+            mediaData={mediaData}
+            contentRef={contentRef}
+            isLoading={isLoading}
+          />
+        )
+      }/>
+      <Route path="/contact" 
+        element={
+          siteData && siteData.contact && (
+            <Contact 
+              pageData={siteData.contact}
+              contentRef={contentRef}
+              isLoading={isLoading}
+              changeRoute={changeRoute}
+            />
+          )
+        }
+      />
+      <Route path="/impressum" 
+        element={
+          siteData && siteData.impressum && (
+            <Impressum 
+              pageData={siteData.impressum}
+              contentRef={contentRef}
+              isLoading={isLoading}
+            />
+          )
+        }
+      />
+      <Route  
+        path="/work/:slug" 
+        element={
+          <SingleWork 
+            postsData={postsData}
+            mediaData={mediaData}
+            contentRef={contentRef}
+            changeRoute={changeRoute}
+            isLoading={isLoading}
+          />
+        }
+      />
     </Routes>
+    
+    {
+      siteData && siteData.home && (
+        <Footer
+        footerData={siteData.home.acf}
+        isLoading={isLoading}
+        location={location}/>
+      )
+    }
     </>
   );
 }
 
 export default App;
+
