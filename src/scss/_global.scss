@@ -649,6 +649,9 @@ section, article {
 .impressum {
   display: flex;
   justify-content: flex-end;
+  p {
+    text-transform: uppercase;
+  }
 }
 /* FOOTER */
 .footer {

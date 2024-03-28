@@ -58,9 +58,7 @@ const About = (props) => {
                                 
                                 <ul className="about__list">
                                     {pageData.acf.about_lists[0].shows_list.shows_list_solo.shows_list_item.map((el, i) => {
-                                        console.log(el)
-                                        return <>
-                                        <li key={i} className="about__list-item--show">
+                                        return <li key={i} className="about__list-item--show">
 
                                             <div className="about__list-item-date--show">
                                                 <p>{el.shows_list_item.date.month}</p>
@@ -77,7 +75,6 @@ const About = (props) => {
                                                 <p>{el.shows_list_item.show_details.location.city_and_country}</p>
                                             </div>
                                         </li>
-                                        </>
                                     })}
                                 </ul>
                             </div>
@@ -87,9 +84,7 @@ const About = (props) => {
                                 
                                 <ul className="about__list">
                                     {pageData.acf.about_lists[0].shows_list.shows_list_group.shows_list_item.map((el, i) => {
-                                        console.log(el)
-                                        return <>
-                                        <li key={i} className="about__list-item--show">
+                                        return <li key={i} className="about__list-item--show">
 
                                             <div className="about__list-item-date--show">
                                                 <p>{el.shows_list_item.date.month}</p>
@@ -106,33 +101,9 @@ const About = (props) => {
                                                 <p>{el.shows_list_item.show_details.location.city_and_country}</p>
                                             </div>
                                         </li>
-                                        </>
                                     })}
                                 </ul>
                             </div>
-                            
-                            {/* <ul className="about__list">
-                                {pageData.acf.about_lists[0].shows_list.shows_list_item.map((el,i) => (
-                                    <li key={i} className="about__list-item--show">
-
-                                        <div className="about__list-item-date--show">
-                                            <p>{el.shows_list_item.date.month}</p>
-                                            <p>{el.shows_list_item.date.year}</p>
-                                        </div>
-
-                                        <div className="about__list-item-description--show">
-                                            <p className="about__show-title">{el.shows_list_item.show_details.show_title}</p>
-                                            <p>{el.shows_list_item.show_details.location.show_room}</p>
-                                        </div>
-
-                                        <div className="about__list-item-location--show"> 
-                                                <p>{el.shows_list_item.show_details.location.city_and_country}</p>
-                                            </div>
-
-                                            <p className="about__list-item-show-type ta--right">{el.shows_list_item.type}</p>
-                                    </li>
-                                ))}
-                            </ul> */}
                         </div>
 
                         <div className="about__list-container"> 

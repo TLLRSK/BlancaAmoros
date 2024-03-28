@@ -38,7 +38,7 @@ const SingleWork = (props) => {
                                                 alt={getImage(el.image, mediaData)?.alt_text} 
                                                 className="img--single-work"
                                                 onClick={() => window.open(getImage(el.image, mediaData)?.source_url)}
-                                                threshold={500}
+                                                threshold={200}
                                                 placeholderSrc={getImage(el.image, mediaData)?.media_details.sizes.thumbnail.source_url}
                                                 >
 

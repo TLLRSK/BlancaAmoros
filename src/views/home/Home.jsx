@@ -49,6 +49,8 @@ const Home = (props) => {
                             `}
                             alt={getImage(post.acf.serie_cover.image)?.alt_text || ""}
                             className="img--home"
+                            threshold={200}
+                            // placeholderSrc={thumbnail}
                           />
                           
                           <figcaption className="home__work-list-item-figcaption">
