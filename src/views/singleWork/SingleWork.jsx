@@ -8,11 +8,6 @@ const SingleWork = (props) => {
     const {slug} = useParams();
     const {postContent} = useSingleWork(postsData, slug)
 
-    let postData = () => {
-        const post = postsData.find(post => post.slug == slug);
-        return post;
-    }
-
     return <>
         {
             postContent && mediaData && (
@@ -32,22 +27,19 @@ const SingleWork = (props) => {
                                                 src={getImage(el.image, mediaData)?.source_url}
                                                 srcSet={`
                                                     ${getImage(el.image, mediaData)?.media_details?.sizes?.thumbnail?.source_url} 360w,
-                                                    ${getImage(el.image, mediaData)?.media_details?.sizes?.large?.source_url} 720w,
-                                                    ${getImage(el.image, mediaData)?.source_url} 1280w,
+                                                    ${getImage(el.image, mediaData)?.media_details?.sizes?.full?.source_url} 720w,
                                                 `}
                                                 alt={getImage(el.image, mediaData)?.alt_text} 
                                                 className="img--single-work"
                                                 onClick={() => window.open(getImage(el.image, mediaData)?.source_url)}
-                                                threshold={200}
+                                                threshold={1200}
                                                 placeholderSrc={getImage(el.image, mediaData)?.media_details.sizes.thumbnail.source_url}
-                                                >
-
-                                            </LazyLoadImage>
+                                            />
                                         </div>
                                         <figcaption className="single-work__list-item-fig-caption">
                                             <p className="single-work__list-item-title">{el.info.title}</p>
-                                            <p className="single-work__list-item-description">{el.info.description}</p>
-                                            <p className="single-work__list-item-size">{el.info.size}</p>
+                                            {el.info.description && <p className="single-work__list-item-description">{el.info.description}</p>}
+                                            {el.info.size && <p className="single-work__list-item-size">{el.info.size}</p>}
                                         </figcaption>
                                     </li>
                                 ))}
@@ -72,10 +64,12 @@ const SingleWork = (props) => {
                                         ))}
                                     </div>
 
-                                    <div className="single-work__description-author">
-                                        <p>{postContent.acf.serie_description.signature.author},</p>
-                                        <p>{postContent.acf.serie_description.signature.year}</p>
-                                    </div>
+                                    {postContent.acf.serie_description.signature.author && postContent.acf.serie_description.signature.year &&
+                                        <div className="single-work__description-author">
+                                            <p>{postContent.acf.serie_description.signature.author},</p>
+                                            <p>{postContent.acf.serie_description.signature.year}</p>
+                                        </div>
+                                    }
                                 </div>
                             )}
                         </main>

@@ -5,12 +5,13 @@ const useFetchData = () => {
     const [siteData, setSiteData] = useState(null);
     const [postsData, setPostsData] = useState(null);
     const [mediaData, setMediaData] = useState(null);
-    const rootUrl = "https://www.blancaamoros.com/shop/wp-json/wp/v2";
+    const rootUrl = "http://localhost/blanca/wp-json/wp/v2";
+    // const rootUrl = "https://www.blancaamoros.com/shop/wp-json/wp/v2";
+    
   
     // Fetching all posts
     const fetchPosts = async() => {
         const url = `${rootUrl}/posts`
-
         axios.get(url)
           .then(response => setPostsData(response.data))
           .catch(error => console.error('Error fetching posts data:', error));

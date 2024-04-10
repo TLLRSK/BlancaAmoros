@@ -4,9 +4,9 @@ const useNavCollapsible = (location) => {
     const [showWork, setShowWork] = useState(false)
 
     const toggleCollapsible = () => {
-        return setShowWork(!showWork)
+        setShowWork(!showWork)
     }
-
+ 
     useEffect(() => {
         setShowWork ? setShowWork(false) : null;
     }, [location])

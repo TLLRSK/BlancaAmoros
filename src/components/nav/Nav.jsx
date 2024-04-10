@@ -5,7 +5,7 @@ export default function Nav(props) {
     
     const {location, postsData, changeRoute} = props;
 
-    const {toggleCollapsible, showWork} = useNavCollapsible(location);
+    const {toggleCollapsible, showWork, closeCollapsible} = useNavCollapsible(location);
     
     const {visibleNav} = useNav(location);
 
@@ -43,8 +43,9 @@ export default function Nav(props) {
                                 id="work" 
                                 className="nav__toggler--work"
                                 checked={showWork}
-                                onChange={toggleCollapsible}>
-                            </input>
+                                onChange={toggleCollapsible}
+                            />
+                           
                             <label htmlFor="work" className={`link--nav link--line-tr-`}>Work</label>
                         </li>
         
@@ -61,20 +62,20 @@ export default function Nav(props) {
                     <ul className="nav__collapsible-list">
                         {postsData.map((post, i) => (
 
-                            <li key={i}>
+                            <li key={i} onClick={() => toggleCollapsible()}>
                                 <LinkComponent to={`/work/${post.slug}`} className={"link--work-list-item link--tr-swapping"} changeRoute={changeRoute}>
-                                <div className="nav__collapsible-list-item swapping--frst-child">
-                                    <p className="nav__collapsible-list-item-index">{i < 10 ? "0" + (i + 1) : (i + 1)}</p>
-                                    <p className="nav__collapsible-list-item-year">{post.acf.serie_cover.description.year}</p>
-                                    <p className="nav__collapsible-list-item-title">{post.acf.serie_cover.description.title}</p>
-                                </div>
+                                    <div className="nav__collapsible-list-item swapping--frst-child">
+                                        <p className="nav__collapsible-list-item-index">{i < 10 ? "0" + (i + 1) : (i + 1)}</p>
+                                        <p className="nav__collapsible-list-item-year">{post.acf.serie_cover.description.year}</p>
+                                        <p className="nav__collapsible-list-item-title">{post.acf.serie_cover.description.title}</p>
+                                    </div>
 
-                                <div className="nav__collapsible-list-item swapping--scnd-child">
-                                    <p className="nav__collapsible-list-item-index">{i < 10 ? "0" + (i + 1) : (i + 1)}</p>
-                                    <p className="nav__collapsible-list-item-year">{post.acf.serie_cover.description.year}</p>
-                                    <p className="nav__collapsible-list-item-title">{post.acf.serie_cover.description.title}</p>
-                                </div>
-                            </LinkComponent>
+                                    <div className="nav__collapsible-list-item swapping--scnd-child">
+                                        <p className="nav__collapsible-list-item-index">{i < 10 ? "0" + (i + 1) : (i + 1)}</p>
+                                        <p className="nav__collapsible-list-item-year">{post.acf.serie_cover.description.year}</p>
+                                        <p className="nav__collapsible-list-item-title">{post.acf.serie_cover.description.title}</p>
+                                    </div>
+                                </LinkComponent>
                             </li>
                         ))}
                     </ul>
@@ -89,5 +90,31 @@ export default function Nav(props) {
             </div>
             
         </nav>
+    </>
+}
+
+const NavCollapsible = () => {
+    const {toggleCollapsible} = useNavCollapsible(location);
+    return <>
+        <ul className="nav__collapsible-list">
+            {postsData.map((post, i) => (
+
+                <li key={i} onClick={() => toggleCollapsible()}>
+                    <LinkComponent to={`/work/${post.slug}`} className={"link--work-list-item link--tr-swapping"} changeRoute={changeRoute}>
+                        <div className="nav__collapsible-list-item swapping--frst-child">
+                            <p className="nav__collapsible-list-item-index">{i < 10 ? "0" + (i + 1) : (i + 1)}</p>
+                            <p className="nav__collapsible-list-item-year">{post.acf.serie_cover.description.year}</p>
+                            <p className="nav__collapsible-list-item-title">{post.acf.serie_cover.description.title}</p>
+                        </div>
+
+                        <div className="nav__collapsible-list-item swapping--scnd-child">
+                            <p className="nav__collapsible-list-item-index">{i < 10 ? "0" + (i + 1) : (i + 1)}</p>
+                            <p className="nav__collapsible-list-item-year">{post.acf.serie_cover.description.year}</p>
+                            <p className="nav__collapsible-list-item-title">{post.acf.serie_cover.description.title}</p>
+                        </div>
+                    </LinkComponent>
+                </li>
+            ))}
+        </ul>
     </>
 }

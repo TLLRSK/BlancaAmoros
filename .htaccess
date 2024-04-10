@@ -1,0 +1,13 @@
+
+# Configuración básica para enrutamiento de SPA (Single Page Application) en React
+<IfModule mod_rewrite.c>
+  Options -MultiViews
+  RewriteEngine On
+  RewriteBase /
+  # Redirigir rutas que comienzan con /blancaamoros/work/ a index.html
+  RewriteRule ^work/.*$ index.html [L]
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^ /index.html [L]
+</IfModule>

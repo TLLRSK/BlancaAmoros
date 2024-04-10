@@ -30,8 +30,7 @@ const Home = (props) => {
               <ul className="home__work-list">
                 {postsData.map((post, i) => {
                   const thumbnail = getImage(post.acf.serie_cover.image, mediaData)?.media_details?.sizes?.thumbnail?.source_url;
-                  const medium = getImage(post.acf.serie_cover.image, mediaData)?.media_details?.sizes?.medium?.source_url;
-                  const large = getImage(post.acf.serie_cover.image, mediaData)?.media_details?.sizes?.large?.source_url;
+                  const full = getImage(post.acf.serie_cover.image, mediaData)?.media_details?.sizes?.full?.source_url;
 
                   return (
                     <li key={post.id} className="home__work-list-item">
@@ -44,13 +43,12 @@ const Home = (props) => {
                             src={getImage(post.acf.serie_cover.image, mediaData)?.source_url}
                             srcSet={`
                               ${thumbnail} 360w,
-                              ${medium} 720w,
-                              ${large} 1280w
+                              ${full} 720w,
                             `}
                             alt={getImage(post.acf.serie_cover.image)?.alt_text || ""}
                             className="img--home"
-                            threshold={200}
-                            // placeholderSrc={thumbnail}
+                            threshold={1200}
+                            placeholderSrc={thumbnail}
                           />
                           
                           <figcaption className="home__work-list-item-figcaption">
