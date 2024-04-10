@@ -1,4 +1,4 @@
-import {AboutListContainer, AboutShowsListContainer } from "../../components";
+import {AboutListContainer, AboutShowsList } from "../../components";
 import getImage from "../../js/utils";
 const About = (props) => {
     const {pageData, mediaData, contentRef, isLoading} = props;
@@ -33,7 +33,7 @@ const About = (props) => {
                         
                         <AboutListContainer pageData={pageData} listName={'education'}/>
 
-                        <AboutShowsListContainer pageData={pageData}/>
+                        <AboutShowsList pageData={pageData}/>
 
                         <AboutListContainer pageData={pageData} listName={'others'}/>
                         

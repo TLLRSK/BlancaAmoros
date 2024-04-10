@@ -8,6 +8,17 @@ const usePageTransition = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // Changing route
+  const changeRoute = (e, to) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      navigate(to);
+      changeSectionVisibility();
+    }, 400);
+  };
+
   // Toggle section visibility
   const changeSectionVisibility = () => {
     if (contentRef.current) {
@@ -15,19 +26,6 @@ const usePageTransition = () => {
         setIsLoading(false);
       }, 600);
     }
-  };
-
-  // Changing route
-  const changeRoute = (e, to) => {
-    console.log("changing route")
-    e.preventDefault();
-    setIsLoading(true);
-    setTimeout(() => {
-      console.log("navigating")
-      window.scrollTo(0, 0);
-      navigate(to);
-      changeSectionVisibility();
-    }, 400);
   };
 
   useEffect(() => {

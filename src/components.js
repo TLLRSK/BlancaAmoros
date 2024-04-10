@@ -3,8 +3,9 @@ export { default as Footer } from './components/footer/Footer.jsx';
 export { default as LinkComponent } from './components/LinkComponent/LinkComponent.jsx';
 export { default as NavSingleWork } from './components/navSingleWork/NavSingleWork.jsx';
 export { default as LoadingScreen } from './components/loadingScreen/LoadingScreen.jsx';
-export { default as AboutListContainer } from './components/lists/aboutLists/AboutListContainer.jsx'
-export { default as AboutList } from './components/lists/aboutLists/AboutList.jsx'
-export { default as AboutListItem } from './components/lists/aboutLists/AboutListItem.jsx'
-export { default as AboutShowsListContainer } from './components/lists/aboutLists/AboutShowsListContainer.jsx'
-export { default as AboutShowListItem } from './components/lists/aboutLists/AboutShowListItem.jsx'
+export { default as AboutListContainer } from './components/lists/aboutLists/AboutListContainer.jsx';
+export { default as AboutList } from './components/lists/aboutLists/AboutList.jsx';
+export { default as AboutListItem } from './components/lists/aboutLists/AboutListItem.jsx';
+export { default as AboutShowsList } from './components/lists/aboutLists/AboutShowsList.jsx';
+export { default as AboutShowsSublistContainer } from './components/lists/aboutLists/AboutShowsSublistContainer.jsx';
+export { default as AboutShowListItem } from './components/lists/aboutLists/AboutShowListItem.jsx';

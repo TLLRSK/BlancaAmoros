@@ -70,6 +70,7 @@ const SingleWork = (props) => {
                                             <p>{postContent.acf.serie_description.signature.year}</p>
                                         </div>
                                     }
+                                    
                                 </div>
                             )}
                         </main>

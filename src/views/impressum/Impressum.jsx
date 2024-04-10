@@ -1,5 +1,8 @@
+import { usePageTransition } from "../../js";
+
 const Impressum = (props) => {
-    const {pageData, contentRef, isLoading} = props;
+    const {pageData} = props;
+    const {contentRef, isLoading} = usePageTransition();
 
     return <>
         {

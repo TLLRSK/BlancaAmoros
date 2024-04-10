@@ -1,6 +1,6 @@
 import {AboutShowListItem} from "../../../components";
 
-const AboutShowsListContainer = ({pageData}) => {
+const AboutShowsSublistContainer = ({pageData}) => {
     return <>
         <div className="about__sublist-container">
             <h4 className="about__sublist-title">{pageData.acf.about_lists[0].shows_list.shows_list_solo.list_title}</h4>
@@ -24,4 +24,4 @@ const AboutShowsListContainer = ({pageData}) => {
     </>
 }
 
-export default AboutShowsListContainer;
+export default AboutShowsSublistContainer;
