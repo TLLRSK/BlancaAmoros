@@ -5,9 +5,7 @@ const useFetchData = () => {
     const [siteData, setSiteData] = useState(null);
     const [postsData, setPostsData] = useState(null);
     const [mediaData, setMediaData] = useState(null);
-    const rootUrl = "http://localhost/blanca/wp-json/wp/v2";
-    // const rootUrl = "https://www.blancaamoros.com/shop/wp-json/wp/v2";
-    
+    const rootUrl = "https://www.blancaamoros.com/shop/wp-json/wp/v2";
   
     // Fetching all posts
     const fetchPosts = async() => {
@@ -35,14 +33,37 @@ const useFetchData = () => {
       
         setSiteData(pageObj);
     }
-  
-    // Fetching images data
-    const fetchMediaData = async () => {
-      const url = `${rootUrl}/media?per_page=100`
 
-      axios.get(url)
-        .then(response => setMediaData(response.data.length > 0 ? response.data : null))
-        .catch(error => console.error('Error fetching media data:', error));
+    const fetchMediaData = async () => {
+      const perPage = 100;
+      let allMediaData = [];
+    
+      try {
+        let page = 1;
+        let totalPages = 1;
+    
+        while (page <= totalPages) {
+          const url = `${rootUrl}/media?per_page=${perPage}&page=${page}`;
+          const response = await axios.get(url);
+    
+          if (response.data.length > 0) {
+            allMediaData = [...allMediaData, ...response.data];
+            totalPages = response.headers['x-wp-totalpages'];
+            page++;
+          } else {
+            break;
+          }
+        }
+    
+        if (allMediaData.length > 0) {
+          setMediaData(allMediaData);
+        } else {
+          setMediaData(null);
+        }
+      } catch (error) {
+        console.error('Error fetching media data:', error);
+        setMediaData(null);
+      }
     };
   
     // Calling back fetch functions

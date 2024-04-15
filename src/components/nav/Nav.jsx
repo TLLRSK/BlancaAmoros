@@ -9,6 +9,21 @@ export default function Nav(props) {
     
     const {visibleNav} = useNav(location);
 
+    const links = [
+        {
+            page: "Blanca Amorós",
+            to: "/"
+        },
+        {
+            page: "About",
+            to: "/about"
+        },
+        {
+            page: "Contact",
+            to: "/contact"
+        },
+    ]
+
     return <>
         <nav className={`nav${!visibleNav ? "--hddn" : ""}`}>
             <div className="nav__bar">
@@ -63,18 +78,18 @@ export default function Nav(props) {
 
                             <li key={i} onClick={closeCollapsible}>
                                 <LinkComponent to={`/work/${post.slug}`} className={"link--work-list-item link--tr-swapping"} changeRoute={changeRoute}>
-                                <div className="nav__collapsible-list-item swapping--frst-child">
-                                    <p className="nav__collapsible-list-item-index">{i < 10 ? "0" + (i + 1) : (i + 1)}</p>
-                                    <p className="nav__collapsible-list-item-year">{post.acf.serie_cover.description.year}</p>
-                                    <p className="nav__collapsible-list-item-title">{post.acf.serie_cover.description.title}</p>
-                                </div>
+                                    <div className="nav__collapsible-list-item swapping--frst-child">
+                                        <p className="nav__collapsible-list-item-index">{i < 10 ? "0" + (i + 1) : (i + 1)}</p>
+                                        <p className="nav__collapsible-list-item-year">{post.acf.serie_cover.description.year}</p>
+                                        <p className="nav__collapsible-list-item-title">{post.acf.serie_cover.description.title}</p>
+                                    </div>
 
-                                <div className="nav__collapsible-list-item swapping--scnd-child">
-                                    <p className="nav__collapsible-list-item-index">{i < 10 ? "0" + (i + 1) : (i + 1)}</p>
-                                    <p className="nav__collapsible-list-item-year">{post.acf.serie_cover.description.year}</p>
-                                    <p className="nav__collapsible-list-item-title">{post.acf.serie_cover.description.title}</p>
-                                </div>
-                            </LinkComponent>
+                                    <div className="nav__collapsible-list-item swapping--scnd-child">
+                                        <p className="nav__collapsible-list-item-index">{i < 10 ? "0" + (i + 1) : (i + 1)}</p>
+                                        <p className="nav__collapsible-list-item-year">{post.acf.serie_cover.description.year}</p>
+                                        <p className="nav__collapsible-list-item-title">{post.acf.serie_cover.description.title}</p>
+                                    </div>
+                                </LinkComponent>
                             </li>
                         ))}
                     </ul>

@@ -27,7 +27,7 @@ const SingleWork = (props) => {
                                                 src={getImage(el.image, mediaData)?.source_url}
                                                 srcSet={`
                                                     ${getImage(el.image, mediaData)?.media_details?.sizes?.thumbnail?.source_url} 360w,
-                                                    ${getImage(el.image, mediaData)?.media_details?.sizes?.full?.source_url} 720w,
+                                                    ${getImage(el.image, mediaData)?.source_url} 720w,
                                                 `}
                                                 alt={getImage(el.image, mediaData)?.alt_text} 
                                                 className="img--single-work"

@@ -30,7 +30,7 @@ const Home = (props) => {
               <ul className="home__work-list">
                 {postsData.map((post, i) => {
                   const thumbnail = getImage(post.acf.serie_cover.image, mediaData)?.media_details?.sizes?.thumbnail?.source_url;
-                  const full = getImage(post.acf.serie_cover.image, mediaData)?.media_details?.sizes?.full?.source_url;
+                  const full = getImage(post.acf.serie_cover.image, mediaData)?.source_url;
 
                   return (
                     <li key={post.id} className="home__work-list-item">

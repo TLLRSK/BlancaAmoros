@@ -14,7 +14,7 @@ const Contact = (props) => {
                         </LinkComponent>
                     </li>
                     <li className="contact__list-item">
-                        <p>Instagram</p>
+                        <p>Ig</p>
                         <LinkComponent to={pageData.acf.contact_info.instagram.instagram_url} className="link link--contact link--line-tr-underline">
                             {pageData.acf.contact_info.instagram.instagram_user}
                         </LinkComponent>

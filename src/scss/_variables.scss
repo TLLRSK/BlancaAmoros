@@ -2,15 +2,21 @@
 /* Unit */
 $unit: 1.2rem;
 /* Font size */
-$s: 1.2rem;
-$m: 1.6rem;
-$l: 2rem;
-$xl: 2.8rem;
-$xxl: 3.2rem;
+$s: clamp(.6rem, 4vw, 1.2rem);
+$m: clamp(.8rem, 5vw, 1.6rem);
+$l: clamp(1rem, 8vw, 2rem);
+$xl: clamp(2rem, 8vw, 2.8rem);
+$xxl: clamp(2.8rem, 8vw, 3.2rem);
 
 /* Padding */
 $padding--s: $unit;
-$padding--m: $unit*2;
+$padding--m: $unit+.4;
+$padding--l: $unit*2;
 
 /* Gap */
-$gap--s: 1.6rem;
+$gap--s: $unit;
+$gap--m: $unit+.4;
+$gap--l: $unit*2;
+$gap--xl: $unit*3;
+$gap--w-s: 16.4rem;
+$gap--w-m: 27rem;
