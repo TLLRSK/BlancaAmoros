@@ -1,5 +1,7 @@
 BLANCA AMORÓS
 
+2024
+
 Website and E-Commerce for Blanca Amorós, spanish artist based in Vienna, Austria.
 
 Headless web on Wordpress + E-Commerce on Woocommerce.
