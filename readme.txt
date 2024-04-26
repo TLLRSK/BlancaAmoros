@@ -23,9 +23,10 @@ https://blancaamoros.com/
 - Making a consistent design with the identity of the client's artistic work.
 - Giving main importance to images.
 
+
 👨‍💻 Front:
 
-- Setting a functional E-Commerce.
+- Setting a functional E-Commerce with Wordpress, Wocommerce and plugins.
 - Using Wordpress' REST API.
 - Creating a prefetch system with React and Axios for requesting website data and improve the navigation speed.
 - Creating and using custom hooks.
