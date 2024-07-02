@@ -1,9 +1,15 @@
 // Components
-export { default as Nav } from '../../src/components/nav/Nav.jsx';
-export { default as Footer } from '../../src/components/footer/Footer.jsx';
-export { default as LinkComponent } from '../../src/components/LinkComponent/LinkComponent.jsx';
-export { default as NavSingleWork } from '../../src/components/navSingleWork/NavSingleWork.jsx';
-export { default as LoadingScreen } from '../../src/components/loadingScreen/LoadingScreen.jsx';
+export { default as Nav } from '../components/nav/Nav.jsx';
+export { default as Footer } from '../components/footer/Footer.jsx';
+export { default as LinkComponent } from '../components/LinkComponent/LinkComponent.jsx';
+export { default as NavSingleWork } from '../components/navSingleWork/NavSingleWork.jsx';
+export { default as LoadingScreen } from '../components/loadingScreen/LoadingScreen.jsx';
+export { default as AboutListContainer } from '../components/lists/aboutLists/AboutListContainer.jsx';
+export { default as AboutList } from '../components/lists/aboutLists/AboutList.jsx';
+export { default as AboutListItem } from '../components/lists/aboutLists/AboutListItem.jsx';
+export { default as AboutShowsList } from '../components/lists/aboutLists/AboutShowsList.jsx';
+export { default as AboutShowsSublistContainer } from '../components/lists/aboutLists/AboutShowsSublistContainer.jsx';
+export { default as AboutShowListItem } from '../components/lists/aboutLists/AboutShowListItem.jsx';
 
 // Views
 export {default as Home} from '../../src/views/home/Home';
