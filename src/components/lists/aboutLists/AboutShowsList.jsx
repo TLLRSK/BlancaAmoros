@@ -1,4 +1,4 @@
-import {AboutShowsSublistContainer} from "../../../components";
+import {AboutShowsSublistContainer} from "../../../js/index";
 
 const AboutShowsList = ({pageData}) => {
     

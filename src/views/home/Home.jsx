@@ -1,7 +1,5 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Link } from "react-router-dom";
-
-import getImage from "../../js/utils";
+import LazyImage from "../../components/lazyImage/LazyImage";
 
 const Home = (props) => {
   const {pageData, postsData, mediaData, contentRef, isLoading, changeRoute} = props;
@@ -29,8 +27,7 @@ const Home = (props) => {
             <main>
               <ul className="home__work-list">
                 {postsData.map((post, i) => {
-                  const thumbnail = getImage(post.acf.serie_cover.image, mediaData)?.media_details?.sizes?.thumbnail?.source_url;
-                  const full = getImage(post.acf.serie_cover.image, mediaData)?.source_url;
+                  const imageUrl = post.acf.serie_cover.image;
 
                   return (
                     <li key={post.id} className="home__work-list-item">
@@ -39,17 +36,7 @@ const Home = (props) => {
         
                         <div className="home__work-list-item-figure img__container--home">
 
-                          <LazyLoadImage
-                            src={getImage(post.acf.serie_cover.image, mediaData)?.source_url}
-                            srcSet={`
-                              ${thumbnail} 360w,
-                              ${full} 720w,
-                            `}
-                            alt={getImage(post.acf.serie_cover.image)?.alt_text || ""}
-                            className="img--home"
-                            threshold={1200}
-                            placeholderSrc={thumbnail}
-                          />
+                          <LazyImage imageUrl={imageUrl} mediaData={mediaData} page="home"/>
                           
                           <figcaption className="home__work-list-item-figcaption">
                             <span className="home__work-list-item-index">{`${i < 10 ? "0" + (i+1) : (i+1)}`}</span>

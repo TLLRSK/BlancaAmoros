@@ -1,4 +1,4 @@
-import {AboutListItem} from "../../../components";
+import {AboutListItem} from "../../../js/index";
 
 const AboutList = ({pageData,listName}) => {
     const listItemsArr = pageData.acf.about_lists[0][`${listName}_list`][`${listName}_list_item`];

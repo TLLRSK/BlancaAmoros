@@ -1,4 +1,4 @@
-import {AboutListContainer, AboutShowsList } from "../../components";
+import {AboutListContainer, AboutShowsList } from "../../js/index";
 import getImage from "../../js/utils";
 const About = (props) => {
     const {pageData, mediaData, contentRef, isLoading} = props;

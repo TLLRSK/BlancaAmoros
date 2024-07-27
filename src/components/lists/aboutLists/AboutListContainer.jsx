@@ -1,4 +1,4 @@
-import {AboutList} from "../../../components";
+import {AboutList} from "../../../js/index";
 
 const AboutListContainer = ({pageData,listName}) => {
     

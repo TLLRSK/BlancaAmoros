@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { NavSingleWork, useSingleWork } from "../../js/index";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import getImage from "../../js/utils";
+import LazyImage from "../../components/lazyImage/LazyImage";
 
 const SingleWork = (props) => {
     const {postsData, mediaData, contentRef, isLoading, changeRoute} = props;
@@ -19,30 +18,21 @@ const SingleWork = (props) => {
                         
                         <main className="single-work__main">
                             <ul className="single-work__list">
-                                {postContent.acf.single_work.map((el,i) => (
-                                    <li key={i} className="single-work__list-item">
-                                        <div className="img__container">
-                                            <LazyLoadImage 
-                                                key={el.image}
-                                                src={getImage(el.image, mediaData)?.source_url}
-                                                srcSet={`
-                                                    ${getImage(el.image, mediaData)?.media_details?.sizes?.thumbnail?.source_url} 360w,
-                                                    ${getImage(el.image, mediaData)?.source_url} 720w,
-                                                `}
-                                                alt={getImage(el.image, mediaData)?.alt_text} 
-                                                className="img--single-work"
-                                                onClick={() => window.open(getImage(el.image, mediaData)?.source_url)}
-                                                threshold={1200}
-                                                placeholderSrc={getImage(el.image, mediaData)?.media_details.sizes.thumbnail.source_url}
-                                            />
-                                        </div>
+                                {postContent.acf.single_work.map((el,i) => {
+
+                                    const imageUrl = el.image;
+
+                                    return <li key={i} className="single-work__list-item">
+                                        
+                                        <LazyImage imageUrl={imageUrl} mediaData={mediaData} page="single-work"/>
+                                        
                                         <figcaption className="single-work__list-item-fig-caption">
                                             <p className="single-work__list-item-title">{el.info.title}</p>
                                             {el.info.description && <p className="single-work__list-item-description">{el.info.description}</p>}
                                             {el.info.size && <p className="single-work__list-item-size">{el.info.size}</p>}
                                         </figcaption>
                                     </li>
-                                ))}
+                                })}
                             </ul>
 
                             {postContent.acf.serie_description.text && (
