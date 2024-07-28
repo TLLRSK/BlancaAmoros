@@ -3,14 +3,14 @@ import { NavSingleWork, useSingleWork } from "../../js/index";
 import LazyImage from "../../components/lazyImage/LazyImage";
 
 const SingleWork = (props) => {
-    const {postsData, mediaData, contentRef, isLoading, changeRoute} = props;
+    const {postsData, mediaData, contentRef, pageLoading, changeRoute} = props;
     const {slug} = useParams();
     const {postContent} = useSingleWork(postsData, slug)
 
     return <>
         {
             postContent && mediaData && (
-                <article className={`single-work ${isLoading ? "" : "ldd"}`} ref={contentRef}>
+                <article className={`single-work ${pageLoading ? "" : "ldd"}`} ref={contentRef}>
                         <header className="header--article single-work__header">
                             <h3>{postContent.acf.serie_cover.description.title}</h3>
                             <p>{postContent.acf.serie_cover.description.year}</p>

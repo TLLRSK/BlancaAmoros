@@ -1,12 +1,12 @@
 import {AboutListContainer, AboutShowsList } from "../../js/index";
 import getImage from "../../js/utils";
 const About = (props) => {
-    const {pageData, mediaData, contentRef, isLoading} = props;
+    const {pageData, mediaData, contentRef, pageLoading} = props;
 
     return <>
         {
             pageData && mediaData && (
-                <section className={`about ${isLoading ? "" : "ldd"}`} ref={contentRef}>
+                <section className={`about ${pageLoading ? "" : "ldd"}`} ref={contentRef}>
                     <header className="header--section about__header"> 
                         <div className="about__bio-grid">
                             <p className="about__bio-grid-item--name">{pageData.acf.bio.name}</p>

@@ -1,12 +1,12 @@
 import { LinkComponent } from "../../js/index";
 
 export default function Footer(props) {
-    const { footerData, location, isLoading } = props;
+    const { footerData, location, pageLoading } = props;
 
     return (
         <>
             {footerData && (
-                <footer className={`footer${isLoading ? "" : " ldd"}`}>
+                <footer className={`footer${pageLoading ? "" : " ldd"}`}>
                 
                     <LinkComponent to={footerData.suscribe?.suscribe_url} target="_blank" className={`link link--tr-swapping ${location.pathname != "/" ? "not-visible" : ""}`}>
                         <p className="footer__suscribe-text swapping--frst-child">{footerData.suscribe?.suscribe_text}</p>

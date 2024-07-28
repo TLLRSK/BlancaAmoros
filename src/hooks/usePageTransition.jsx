@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import useLoadedData from './useLoadedData';
 
 const usePageTransition = () => {
-  const [isLoading, setIsLoading] = useState(true);
-  const [firstLoad, setFirstLoad] = useState(true);
+  const {loadedData } = useLoadedData();
+  const [pageLoading, setPageLoading] = useState(true);
   const contentRef = useRef(null);
   const navigate = useNavigate();
   const location = useLocation();
@@ -11,7 +12,7 @@ const usePageTransition = () => {
   // Changing route
   const changeRoute = (e, to) => {
     e.preventDefault();
-    setIsLoading(true);
+    setPageLoading(true);
     setTimeout(() => {
       window.scrollTo(0, 0);
       navigate(to);
@@ -23,16 +24,22 @@ const usePageTransition = () => {
   const changeSectionVisibility = () => {
     if (contentRef.current) {
       setTimeout(() => {
-        setIsLoading(false);
-      }, 600);
+        setPageLoading(false);
+      }, 400);
     }
   };
 
   useEffect(() => {
-    changeSectionVisibility();
-  }, [contentRef.current, firstLoad]);
+    loadedData && setTimeout(() => {
+      setPageLoading(false);
+    }, 600);
+  }, [loadedData]);
 
-  return { location, isLoading, contentRef, changeRoute, firstLoad, setFirstLoad };
+  useEffect(() => {
+    changeSectionVisibility();
+  }, [contentRef.current]);
+
+  return { location, pageLoading, contentRef, changeRoute };
 };
 
 export default usePageTransition;

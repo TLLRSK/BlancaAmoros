@@ -108,33 +108,22 @@ section, article {
   padding: $padding--s;
   opacity: 1;
   overflow: hidden;
-  
 
   &__title {
-    display: flex;
-    align-items: center;
-    gap: .8rem;
-    overflow: hidden;
-    & div {
-      display: flex;
-    }
-  }
-  &__word {
-    overflow: hidden;
-  }
-  &__char {
     font-size: $l;
     line-height: $l;
     font-weight: 300;
+    transition: opacity .3s ease-in-out, transform .6s ease-in-out;
+    opacity: 0;
     transform: translateY(100%);
-    opacity: 1;
-    transition: transform .6s cubic-bezier(.59,.96,.74,.95), opacity .6s ease-in-out;
     
-    &.ldd {
+    &.loading {
+      opacity: 1;
       transform: translateY(0);
     }
-    &.clsng {
+    &.closing {
       opacity: 0;
+      transform: translateY(-100%);
     }
   }
 }
@@ -449,9 +438,6 @@ section, article {
     gap: $gap--w-s;
   }
   &__list-item {
-    .lazy-load-image-background {
-      min-height: 12rem;
-    }
     &-fig-caption {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -715,7 +701,6 @@ label {
 img {
     width: 100%;
     height: auto;
-    transition: opacity .2s ease-in-out;
 }
 .img {
   &--home {
@@ -724,6 +709,7 @@ img {
 }
 .img__container, .img__container--home {
   width: 100%;
+  min-height: 24rem;
   overflow: hidden;
 }
 
@@ -752,6 +738,9 @@ img {
 }
 .ta--right {
   text-align: right;
+}
+.opacity-0 {
+  opacity: 0;
 }
 
 /* -- MEDIA QUERIES -- */
@@ -1236,16 +1225,19 @@ img {
   @media all and (min-width: 1920px) {
     /* SITE */
     body {
-      padding: 3.6rem;
+      padding: 6.4rem;
     }
     /* NAV */
     .nav, .nav--hddn {
-      padding: $gap--l $gap--xl 0 $gap--xl;
+      padding: $gap--l 6.4rem 0 6.4rem;
       &__bar, &__grid, &__collapsible-list-item {
         gap: $gap--xl;
       }
       &__grid-item {
-        justify-content: flex-end;
+        align-items: flex-end;
+        &:nth-last-child(2) {
+          align-items: center;
+        }
       }
       &__close-btn {
         width: 2rem;
@@ -1303,7 +1295,7 @@ img {
     /* ABOUT */
     .about {
       &__header {
-        width: 66%;
+        width: 50%;
         margin: auto;
       }
       &__bio-grid {

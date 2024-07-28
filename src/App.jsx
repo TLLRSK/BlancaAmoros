@@ -3,98 +3,93 @@ import {Nav, Footer, LoadingScreen, Home, About, Contact, SingleWork, useFetchDa
 import './scss/style.scss';
 
 function App() {
-  const {siteData, postsData, mediaData} = useFetchData();
-  const { location, isLoading, contentRef, changeRoute, firstLoad, setFirstLoad } = usePageTransition();
+  const { siteData, postsData, mediaData, isLoading, isError } = useFetchData();
+  const { location, contentRef, pageLoading, changeRoute } = usePageTransition();
+
+  if (isLoading) {
+    return <LoadingScreen
+    postsData={postsData}
+    siteData={siteData}
+    mediaData={mediaData}
+    isLoading={isLoading}/>;
+  } 
+
+  if (isError) return <div>An error occurred</div>;
 
   return (
     <>
-    <Nav
-      location={location}
-      postsData={postsData}
-      changeRoute={changeRoute}
-      firstLoad={firstLoad}
-    />
-    {
-      firstLoad && (
-        <LoadingScreen
+      <Nav
+        location={location}
         postsData={postsData}
-        siteData={siteData}
-        mediaData={mediaData}
-        isLoading={isLoading}
-        setFirstLoad={setFirstLoad}/>
-      )
-    }
-    
-    <Routes>
-      <Route path="/" element={
-        siteData && siteData.home && (
-          <Home 
-            pageData={siteData.home}
-            mediaData={mediaData} 
-            contentRef={contentRef} 
-            postsData={postsData}
-            changeRoute={changeRoute}
-            isLoading={isLoading}
-          />
-        )
-      }
-      />
-
-      <Route path="/about" element={
-        siteData && siteData.about && (
-          <About
-            pageData={siteData.about}
-            mediaData={mediaData}
-            contentRef={contentRef}
-            isLoading={isLoading}
-          />
-        )
-      }/>
-      <Route path="/contact" 
-        element={
-          siteData && siteData.contact && (
-            <Contact 
-              pageData={siteData.contact}
-              contentRef={contentRef}
-              isLoading={isLoading}
+        changeRoute={changeRoute}
+      />  
+      <Routes>
+        <Route path="/" element={
+          siteData && siteData.home && (
+            <Home 
+              pageData={siteData.home}
+              mediaData={mediaData} 
+              contentRef={contentRef} 
+              postsData={postsData}
               changeRoute={changeRoute}
+              pageLoading={pageLoading}
             />
           )
         }
-      />
-      <Route path="/impressum" 
-        element={
-          siteData && siteData.impressum && (
-            <Impressum 
-              pageData={siteData.impressum}
+        />
+
+        <Route path="/about" element={
+          siteData && siteData.about && (
+            <About
+              pageData={siteData.about}
+              mediaData={mediaData}
               contentRef={contentRef}
-              isLoading={isLoading}
+              pageLoading={pageLoading}
             />
           )
-        }
-      />
-      <Route  
-        path="/work/:slug" 
-        element={
-          <SingleWork 
-            postsData={postsData}
-            mediaData={mediaData}
-            contentRef={contentRef}
-            changeRoute={changeRoute}
-            isLoading={isLoading}
-          />
-        }
-      />
-    </Routes>
-    
-    {
-      siteData && siteData.home && (
-        <Footer
+        }/>
+        <Route path="/contact" 
+          element={
+            siteData && siteData.contact && (
+              <Contact 
+                pageData={siteData.contact}
+                contentRef={contentRef}
+                pageLoading={pageLoading}
+                changeRoute={changeRoute}
+              />
+            )
+          }
+        />
+        <Route path="/impressum" 
+          element={
+            siteData && siteData.impressum && (
+              <Impressum 
+                pageData={siteData.impressum}
+                contentRef={contentRef}
+                pageLoading={pageLoading}
+              />
+            )
+          }
+        />
+        <Route  
+          path="/work/:slug" 
+          element={
+            <SingleWork 
+              postsData={postsData}
+              mediaData={mediaData}
+              contentRef={contentRef}
+              changeRoute={changeRoute}
+              pageLoading={pageLoading}
+            />
+          }
+        />
+      </Routes>
+      
+      <Footer
         footerData={siteData.home.acf}
-        isLoading={isLoading}
-        location={location}/>
-      )
-    }
+        pageLoading={pageLoading}
+        location={location}
+      />
     </>
   );
 }

@@ -1,11 +1,11 @@
 import { LinkComponent } from "../../js/index";
 
 const Contact = (props) => {
-    const {pageData, contentRef, isLoading, changeRoute} = props;
+    const {pageData, contentRef, pageLoading, changeRoute} = props;
 
     return <>
         {pageData && (
-            <section className={`contact ${isLoading ? "" : "ldd"}`} ref={contentRef}>
+            <section className={`contact ${pageLoading ? "" : "ldd"}`} ref={contentRef}>
                 <ul className="contact__list">
                     <li className="contact__list-item">
                         <p>Email</p>
