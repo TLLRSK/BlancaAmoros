@@ -540,14 +540,15 @@ section, article {
   
   &__list-container {
     display: grid;
-    gap: $gap--s;
-    padding-bottom: $padding--s;
+    gap: $gap--l;
+    padding-bottom: $padding--m;
+    margin-bottom: $padding--m;
     border-bottom: 1px solid;
   }
   &__list-container--sublists, &__sublist-container {
     display: flex;
     flex-direction: column;
-    gap: $gap--s;
+    gap: $gap--l;
   }
   &__list-container--sublists {
     border-bottom: 1px solid var(--black);
@@ -705,6 +706,9 @@ img {
 .img {
   &--home {
     min-height: 20rem;
+  }
+  &--about {
+    margin-bottom: $padding--l;
   }
 }
 .img__container, .img__container--home {
@@ -880,17 +884,10 @@ img {
     }
     &__list-container {
       display: grid;
-      gap: $gap--m;
+    }
+  
+    &__list-container--sublists {
       padding-bottom: $padding--l;
-
-    }
-    &__list-container--sublists, &__sublist-container {
-      gap: $gap--m;
-    }
-    &__sublist-container {
-      &:nth-last-child(1) {
-        padding-bottom: $padding--l;
-      }
     }
     
     &__list {
@@ -957,6 +954,10 @@ img {
     &--home:hover, &--single-work:hover {
         cursor: pointer;
         opacity: 0.8;
+    }
+
+    &--about {
+      margin-bottom: 3.6rem;
     }
   }
   /* TYPO */
@@ -1295,7 +1296,7 @@ img {
     /* ABOUT */
     .about {
       &__header {
-        width: 50%;
+        width: 66%;
         margin: auto;
       }
       &__bio-grid {
