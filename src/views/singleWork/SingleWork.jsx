@@ -1,9 +1,11 @@
 import { useParams } from "react-router-dom";
 import { NavSingleWork, useSingleWork } from "../../js/index";
 import LazyImage from "../../components/lazyImage/LazyImage";
+import useLoadedData from "../../hooks/useLoadedData";
 
 const SingleWork = (props) => {
-    const {postsData, mediaData, contentRef, pageLoading, changeRoute} = props;
+    const {contentRef, pageLoading, changeRoute} = props;
+    const {postsData, mediaData} = useLoadedData();
     const {slug} = useParams();
     const {postContent} = useSingleWork(postsData, slug)
 
@@ -24,7 +26,7 @@ const SingleWork = (props) => {
 
                                     return <li key={i} className="single-work__list-item">
                                         
-                                        <LazyImage imageUrl={imageUrl} mediaData={mediaData} page="single-work"/>
+                                        <LazyImage imageUrl={imageUrl} page="single-work"/>
                                         
                                         <figcaption className="single-work__list-item-fig-caption">
                                             <p className="single-work__list-item-title">{el.info.title}</p>

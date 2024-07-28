@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import LazyImage from "../../components/lazyImage/LazyImage";
+import useLoadedData from "../../hooks/useLoadedData";
 
 const Home = (props) => {
-  const {pageData, postsData, mediaData, contentRef, pageLoading, changeRoute} = props;
+  const {pageData, contentRef, pageLoading, changeRoute} = props;
+  const {postsData} = useLoadedData();
 
   return <>
     <header className={`header--section home__header ${pageLoading ? "" : "ldd"}`}>
@@ -32,7 +34,7 @@ const Home = (props) => {
   
                   <div className="home__work-list-item-figure img__container--home">
 
-                    <LazyImage imageUrl={imageUrl} mediaData={mediaData} page="home"/>
+                    <LazyImage imageUrl={imageUrl} page="home"/>
                     
                     <figcaption className="home__work-list-item-figcaption">
                       <span className="home__work-list-item-index">{`${i < 10 ? "0" + (i+1) : (i+1)}`}</span>

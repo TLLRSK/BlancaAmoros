@@ -1,7 +1,9 @@
+import useLoadedData from "../../hooks/useLoadedData";
 import {AboutListContainer, AboutShowsList } from "../../js/index";
 import getImage from "../../js/utils";
 const About = (props) => {
-    const {pageData, mediaData, contentRef, pageLoading} = props;
+    const {pageData, contentRef, pageLoading} = props;
+    const {mediaData} = useLoadedData();
 
     return <>
         {

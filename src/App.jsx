@@ -23,9 +23,10 @@ function App() {
         postsData={postsData}
         changeRoute={changeRoute}
       />  
+      
       <Routes>
-        <Route path="/" element={
-          siteData && siteData.home && (
+        <Route path="/" 
+          element={
             <Home 
               pageData={siteData.home}
               mediaData={mediaData} 
@@ -34,41 +35,37 @@ function App() {
               changeRoute={changeRoute}
               pageLoading={pageLoading}
             />
-          )
-        }
+          }
         />
 
-        <Route path="/about" element={
-          siteData && siteData.about && (
+        <Route path="/about"
+          element={
             <About
               pageData={siteData.about}
               mediaData={mediaData}
               contentRef={contentRef}
               pageLoading={pageLoading}
             />
-          )
-        }/>
+          }
+        />
+        
         <Route path="/contact" 
           element={
-            siteData && siteData.contact && (
-              <Contact 
-                pageData={siteData.contact}
-                contentRef={contentRef}
-                pageLoading={pageLoading}
-                changeRoute={changeRoute}
-              />
-            )
+            <Contact 
+              pageData={siteData.contact}
+              contentRef={contentRef}
+              pageLoading={pageLoading}
+              changeRoute={changeRoute}
+            />
           }
         />
         <Route path="/impressum" 
           element={
-            siteData && siteData.impressum && (
-              <Impressum 
-                pageData={siteData.impressum}
-                contentRef={contentRef}
-                pageLoading={pageLoading}
-              />
-            )
+            <Impressum 
+              pageData={siteData.impressum}
+              contentRef={contentRef}
+              pageLoading={pageLoading}
+            />
           }
         />
         <Route  

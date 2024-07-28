@@ -1,10 +1,11 @@
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 import getImage from "../../js/utils";
-import { usePageTransition } from "../../js";
+import useLoadedData from "../../hooks/useLoadedData";
 
 const LazyImage = (props) => {
-    const {imageUrl, mediaData, page} = props;
+    const {imageUrl, page} = props;
+    const {mediaData} = useLoadedData();
     
     const thumbnail = getImage(imageUrl, mediaData)?.media_details?.sizes?.thumbnail?.source_url;
     const medium =getImage(imageUrl, mediaData).media_details?.sizes?.medium?.source_url;

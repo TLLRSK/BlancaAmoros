@@ -9,7 +9,7 @@ const useLoadedData = () => {
         postsData && mediaData && siteData && setLoadedData(true);
     }, [postsData, mediaData, siteData])
 
-    return {loadedData};
+    return {loadedData, postsData, mediaData, siteData};
 }
 
 export default useLoadedData;

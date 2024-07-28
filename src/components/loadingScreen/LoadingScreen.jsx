@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
-import { useFetchData } from "../../js";
+import useLoadedData from "../../hooks/useLoadedData";
 
 const LoadingScreen = () => {
-  const {postsData, mediaData, siteData} = useFetchData();
+  const {loadedData} = useLoadedData();
   const [isLoading, setIsLoading] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
-    console.log("loading page")
   }, [])
 
   useEffect(() => {
-    if (postsData && mediaData && siteData) {
+    if (loadedData) {
       setIsLoading(false);
       setIsClosing(true);
     }
-  }, [postsData, mediaData, siteData]);
+  }, [useLoadedData]);
 
   return (
     <div className="loading-screen">
