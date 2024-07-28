@@ -405,6 +405,7 @@ section, article {
     gap: $gap--w-s;
 
     &-item {
+      flex: 1;
       &-figure {
         display: flex;
         flex-direction: column-reverse;
