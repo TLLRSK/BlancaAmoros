@@ -1227,7 +1227,7 @@ img {
   @media all and (min-width: 1920px) {
     /* SITE */
     body {
-      padding: 6.4rem;
+      padding: $padding--l 6.4rem 6.4rem 6.4rem;
     }
     /* NAV */
     .nav, .nav--hddn {

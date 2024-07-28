@@ -7,7 +7,7 @@ const Home = (props) => {
   const {postsData} = useLoadedData();
 
   return <>
-    <header className={`header--section home__header ${pageLoading ? "" : "ldd"}`}>
+    <header className={`${pageLoading ? "header--section home__header" : "header--section home__header ldd"}`}>
       <div className="home__header-row">
         <h1 className="home__header-title">Blanca Amorós</h1>
 
