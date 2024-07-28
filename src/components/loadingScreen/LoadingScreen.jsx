@@ -1,25 +1,28 @@
 import { useEffect, useState } from "react";
-import useLoadedData from "../../hooks/useLoadedData";
 
-const LoadingScreen = () => {
-  const {loadedData} = useLoadedData();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isClosing, setIsClosing] = useState(false);
+const LoadingScreen = (props) => {
+  const { isLoading } = props;
+  const [ screenState, setScreenState ] = useState('loading');
 
   useEffect(() => {
-    setIsLoading(true);
-  }, [])
-
-  useEffect(() => {
-    if (loadedData) {
-      setIsLoading(false);
-      setIsClosing(true);
+    console.log(isLoading)
+    switch(isLoading) {
+      case true:
+        setTimeout(() => {
+          setScreenState('opening');
+        }, 100)
+        break;
+      case false:
+        setScreenState('closing');
+        break;
+      default:
+        return;
     }
-  }, [useLoadedData]);
+  }, [isLoading]);
 
   return (
     <div className="loading-screen">
-        <h2 className={`${isLoading ? "loading-screen__title loading" : isClosing ? "loading-screen__title closing" : "loading-screen__title"}`}>Blanca Amorós</h2>
+        <h2 className={`${screenState === 'opening' ? "loading-screen__title loading" : screenState === 'closing' ? " loading-screen__title closing" : "loading-screen__title"}`}>Blanca Amorós</h2>
     </div>
   );
 };

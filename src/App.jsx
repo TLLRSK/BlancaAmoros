@@ -1,21 +1,25 @@
 import { Route, Routes } from 'react-router-dom';
 import {Nav, Footer, LoadingScreen, Home, About, Contact, SingleWork, useFetchData, usePageTransition, Impressum } from '../src/js/index';
+import { useEffect, useState } from 'react';
 import './scss/style.scss';
 
 function App() {
   const { siteData, postsData, mediaData, isLoading, isError } = useFetchData();
   const { location, contentRef, pageLoading, changeRoute } = usePageTransition();
 
-  if (isLoading) {
-    return <LoadingScreen
-    postsData={postsData}
-    siteData={siteData}
-    mediaData={mediaData}
-    isLoading={isLoading}/>;
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    !isLoading && setTimeout(() => {
+      setIsLoaded(true)
+    }, 400)
+  }, [isLoading])
+
+  if (!isLoaded) {
+    return <LoadingScreen isLoading={isLoading}/>;
   } 
 
   if (isError) return <div>An error occurred</div>;
-
   return (
     <>
       <Nav
@@ -23,7 +27,7 @@ function App() {
         postsData={postsData}
         changeRoute={changeRoute}
       />  
-      
+
       <Routes>
         <Route path="/" 
           element={

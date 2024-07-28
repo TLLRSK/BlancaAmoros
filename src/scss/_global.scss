@@ -66,7 +66,7 @@ section, article {
   flex: 1;
   display: flex;
   flex-direction: column;
-  transition: opacity .3s ease-in-out, transform .6s cubic-bezier(.36,.82,1,1);
+  transition: opacity .6s ease-in-out, transform .6s cubic-bezier(.36,.82,1,1);
   opacity: 0;
   transform: translateY(4rem);
 
@@ -113,7 +113,7 @@ section, article {
     font-size: $l;
     line-height: $l;
     font-weight: 300;
-    transition: opacity .3s ease-in-out, transform .6s ease-in-out;
+    transition: opacity .6s ease-in-out, transform .6s ease-in-out;
     opacity: 0;
     transform: translateY(100%);
     
@@ -194,7 +194,7 @@ section, article {
     overflow: hidden;
 
     .swapping--frst-child, .swapping--scnd-child {
-      transition: transform .4s ease-in-out, opacity .4s ease-in-out;
+      transition: transform .4s ease-in-out, opacity .6s ease-in-out;
     }
     .swapping--frst-child {
       opacity: 1;
@@ -648,7 +648,7 @@ section, article {
   gap: $gap--l;
   transform: translateY(4rem);
   opacity: 0;
-  transition: opacity .3s ease-in-out, transform .6s cubic-bezier(.36,.82,1,1);
+  transition: opacity .6s ease-in-out, transform .6s cubic-bezier(.36,.82,1,1);
 
   &.ldd {
     opacity: 1;
