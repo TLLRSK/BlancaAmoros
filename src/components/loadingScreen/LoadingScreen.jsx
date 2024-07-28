@@ -5,7 +5,6 @@ const LoadingScreen = (props) => {
   const [ screenState, setScreenState ] = useState('loading');
 
   useEffect(() => {
-    console.log(isLoading)
     switch(isLoading) {
       case true:
         setTimeout(() => {
@@ -26,6 +25,5 @@ const LoadingScreen = (props) => {
     </div>
   );
 };
-
 
 export default LoadingScreen;
